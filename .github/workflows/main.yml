@@ -13,5 +13,5 @@ jobs:
       - name: Upload Files
         uses: actions/upload-artifact@v1
         with:
-          name: Assembly
-          path: SampleRevitAddIn\\SampleRevitAddin2020\\bin\\Release\\SampleRevitAddin.dll
+          name: Output
+          path: SampleRevitAddIn\\SampleRevitAddin2020\\bin\\Release
