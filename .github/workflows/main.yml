@@ -3,14 +3,13 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+    build:
+        runs-on: windows-latest
 
-    runs-on: windows-latest
-
-    steps:
-   # checkout code from repository
-    - name: checkout repo
-      uses: actions/checkout@v1
-   # use msbuild to build VS solution which has the SSDT project
-    - name: build solution
-      run: "& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" SampleRevitAddIn\\SampleRevitAddIn.sln"
+        steps:
+            # checkout code from repository
+            - name: checkout repo
+              uses: actions/checkout@v1
+            # use msbuild to build VS solution which has the SSDT project
+            - name: build solution
+              run: "& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\"/p:referencepath=\"RevitAPI\\2017\" /property:Configuration=Release SampleRevitAddIn\\SampleRevitAddIn2020\\SampleRevitAddIn2020.csproj"
