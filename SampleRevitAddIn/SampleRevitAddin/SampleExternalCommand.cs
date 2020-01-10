@@ -12,6 +12,16 @@ namespace SampleRevitAddin
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+#if REVIT2017
+            Autodesk.Revit.UI.TaskDialog.Show("SampleExternalCommand", "Sample Revit 2017 Add-in");
+#elif REVIT2018
+            Autodesk.Revit.UI.TaskDialog.Show("SampleExternalCommand", "Sample Revit 2018 Add-in");
+#elif REVIT2019
+            Autodesk.Revit.UI.TaskDialog.Show("SampleExternalCommand", "Sample Revit 2017 Add-in");
+#elif REVIT2020
+            Autodesk.Revit.UI.TaskDialog.Show("SampleExternalCommand", "Sample Revit 2020 Add-in");
+#endif
+
             return Result.Succeeded;
         }
     }
