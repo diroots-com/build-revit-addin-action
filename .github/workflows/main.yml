@@ -1,15 +1,17 @@
-name: CI
+name: build-revit-addin
 
 on: [push]
 
 jobs:
-    build:
-        runs-on: windows-latest
-
-        steps:
-            # checkout code from repository
-            - name: checkout repo
-              uses: actions/checkout@v1
-            # use msbuild to build VS solution which has the SSDT project
-            - name: build solution
-              run: "& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\"/p:referencepath=\"D:\\a\\build-revit-addin-action\\build-revit-addin-action\\RevitAPI\\2020\" /property:Configuration=Release SampleRevitAddIn\\SampleRevitAddIn2020\\SampleRevitAddIn2020.csproj"
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v1
+      - name: build solution
+        run: "& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\"/p:referencepath=\"D:\\a\\build-revit-addin-action\\build-revit-addin-action\\RevitAPI\\2020\" /property:Configuration=Release SampleRevitAddIn\\SampleRevitAddIn2020\\SampleRevitAddIn2020.csproj"
+      - name: Upload Files
+        uses: actions/upload-artifact@v1
+        with:
+          name: Assembly
+          path: SampleRevitAddIn\\SampleRevitAddin2020\\bin\\Release\\SampleRevitAddin.dll
